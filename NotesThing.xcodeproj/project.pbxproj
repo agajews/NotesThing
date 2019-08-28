@@ -12,6 +12,9 @@
 		8036AB8C23133A3B00ACF25F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8036AB8A23133A3B00ACF25F /* Main.storyboard */; };
 		8036AB8E23133A3D00ACF25F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8036AB8D23133A3D00ACF25F /* Assets.xcassets */; };
 		8036AB9123133A3D00ACF25F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8036AB8F23133A3D00ACF25F /* LaunchScreen.storyboard */; };
+		80DED0F72313425E00389748 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DED0F62313425E00389748 /* WebKit.framework */; };
+		80DED0F92314635A00389748 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED0F82314635A00389748 /* CanvasView.swift */; };
+		80DED0FF2316015A00389748 /* TapBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED0FE2316015A00389748 /* TapBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		8036AB8D23133A3D00ACF25F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8036AB9023133A3D00ACF25F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8036AB9223133A3D00ACF25F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80DED0F62313425E00389748 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		80DED0F82314635A00389748 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		80DED0FE2316015A00389748 /* TapBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80DED0F72313425E00389748 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,7 @@
 			children = (
 				8036AB8523133A3B00ACF25F /* NotesThing */,
 				8036AB8423133A3B00ACF25F /* Products */,
+				80DED0F52313425E00389748 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +62,24 @@
 		8036AB8523133A3B00ACF25F /* NotesThing */ = {
 			isa = PBXGroup;
 			children = (
+				80DED0FE2316015A00389748 /* TapBox.swift */,
 				8036AB8623133A3B00ACF25F /* AppDelegate.swift */,
 				8036AB8823133A3B00ACF25F /* ViewController.swift */,
 				8036AB8A23133A3B00ACF25F /* Main.storyboard */,
+				80DED0F82314635A00389748 /* CanvasView.swift */,
 				8036AB8D23133A3D00ACF25F /* Assets.xcassets */,
 				8036AB8F23133A3D00ACF25F /* LaunchScreen.storyboard */,
 				8036AB9223133A3D00ACF25F /* Info.plist */,
 			);
 			path = NotesThing;
+			sourceTree = "<group>";
+		};
+		80DED0F52313425E00389748 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				80DED0F62313425E00389748 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +154,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8036AB8923133A3B00ACF25F /* ViewController.swift in Sources */,
+				80DED0FF2316015A00389748 /* TapBox.swift in Sources */,
 				8036AB8723133A3B00ACF25F /* AppDelegate.swift in Sources */,
+				80DED0F92314635A00389748 /* CanvasView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +303,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38MLPB9BW2;
 				INFOPLIST_FILE = NotesThing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +322,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38MLPB9BW2;
 				INFOPLIST_FILE = NotesThing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
