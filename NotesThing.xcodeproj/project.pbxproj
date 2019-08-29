@@ -15,6 +15,10 @@
 		80DED0F72313425E00389748 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DED0F62313425E00389748 /* WebKit.framework */; };
 		80DED0F92314635A00389748 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED0F82314635A00389748 /* CanvasView.swift */; };
 		80DED0FF2316015A00389748 /* TapBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED0FE2316015A00389748 /* TapBox.swift */; };
+		80DED10123171E8100389748 /* WebLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED10023171E8100389748 /* WebLink.swift */; };
+		80DED103231728FA00389748 /* CirclerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED102231728FA00389748 /* CirclerView.swift */; };
+		80DED1072317477600389748 /* TapWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED1062317477600389748 /* TapWindow.swift */; };
+		80DED1092318084F00389748 /* CirclerRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED1082318084F00389748 /* CirclerRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		80DED0F62313425E00389748 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		80DED0F82314635A00389748 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		80DED0FE2316015A00389748 /* TapBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapBox.swift; sourceTree = "<group>"; };
+		80DED10023171E8100389748 /* WebLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLink.swift; sourceTree = "<group>"; };
+		80DED102231728FA00389748 /* CirclerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclerView.swift; sourceTree = "<group>"; };
+		80DED1062317477600389748 /* TapWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapWindow.swift; sourceTree = "<group>"; };
+		80DED1082318084F00389748 /* CirclerRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclerRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,11 +70,15 @@
 		8036AB8523133A3B00ACF25F /* NotesThing */ = {
 			isa = PBXGroup;
 			children = (
+				80DED1082318084F00389748 /* CirclerRecognizer.swift */,
 				80DED0FE2316015A00389748 /* TapBox.swift */,
 				8036AB8623133A3B00ACF25F /* AppDelegate.swift */,
+				80DED1062317477600389748 /* TapWindow.swift */,
 				8036AB8823133A3B00ACF25F /* ViewController.swift */,
+				80DED10023171E8100389748 /* WebLink.swift */,
 				8036AB8A23133A3B00ACF25F /* Main.storyboard */,
 				80DED0F82314635A00389748 /* CanvasView.swift */,
+				80DED102231728FA00389748 /* CirclerView.swift */,
 				8036AB8D23133A3D00ACF25F /* Assets.xcassets */,
 				8036AB8F23133A3D00ACF25F /* LaunchScreen.storyboard */,
 				8036AB9223133A3D00ACF25F /* Info.plist */,
@@ -155,8 +167,12 @@
 			files = (
 				8036AB8923133A3B00ACF25F /* ViewController.swift in Sources */,
 				80DED0FF2316015A00389748 /* TapBox.swift in Sources */,
+				80DED10123171E8100389748 /* WebLink.swift in Sources */,
 				8036AB8723133A3B00ACF25F /* AppDelegate.swift in Sources */,
+				80DED1092318084F00389748 /* CirclerRecognizer.swift in Sources */,
 				80DED0F92314635A00389748 /* CanvasView.swift in Sources */,
+				80DED103231728FA00389748 /* CirclerView.swift in Sources */,
+				80DED1072317477600389748 /* TapWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

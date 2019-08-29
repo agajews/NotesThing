@@ -1,25 +1,21 @@
 //
-//  selfView.swift
+//  CirclerView.swift
 //  NotesThing
 //
-//  Created by Alex Gajewski on 8/26/19.
+//  Created by Alex Gajewski on 8/28/19.
 //  Copyright © 2019 Alex Gajewski. All rights reserved.
 //
 
 import UIKit
 
-class CanvasView: UIView {
+class CirclerView: UIView {
 
     var currStroke = [CGPoint]()
-    var finishedStrokes = [[CGPoint]]()
-    
+
     override func draw(_ rect: CGRect) {
         drawStroke(stroke: currStroke)
-        for stroke in finishedStrokes {
-            drawStroke(stroke: stroke)
-        }
     }
-
+    
     func drawStroke(stroke: [CGPoint]) {
         if stroke.count < 2 {
             return
@@ -60,12 +56,10 @@ class CanvasView: UIView {
     }
     
     func endStroke(touch: UITouch) {
-        currStroke.append(touch.location(in: self))
-        finishedStrokes.append(currStroke)
         currStroke = []
         self.setNeedsDisplay()
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         if touch.type != .pencil {
@@ -99,4 +93,5 @@ class CanvasView: UIView {
         }
         self.endStroke(touch: touch)
     }
+    
 }

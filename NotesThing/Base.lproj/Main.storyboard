@@ -18,32 +18,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQi-v9-uFB">
-                                <rect key="frame" x="0.0" y="44" width="1039" height="936"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FR9-ew-khJ">
+                                <rect key="frame" x="107" y="411" width="465" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <subviews>
+                                    <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQi-v9-uFB">
+                                        <rect key="frame" x="-44" y="-248" width="144" height="189"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IKi-hc-79e" customClass="CirclerView" customModule="NotesThing" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="184" width="218" height="132"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="5Lz-jE-OPi" appends="YES" id="SUI-NL-pFZ"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zNO-A3-uUc" customClass="TapBox" customModule="NotesThing" customModuleProvider="target">
-                                <rect key="frame" x="243" y="50" width="880" height="924"/>
+                                <rect key="frame" x="892" y="648" width="428" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-b7-Yxc">
-                                <rect key="frame" x="243" y="50" width="880" height="924"/>
+                                <rect key="frame" x="973" y="394" width="347" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PMD-XG-8Qj">
-                                <rect key="frame" x="422" y="50" width="944" height="930"/>
+                                <rect key="frame" x="287" y="149" width="319" height="166"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQ3-Qe-hyh" customClass="CanvasView" customModule="NotesThing" customModuleProvider="target">
-                                        <rect key="frame" x="59" y="-193" width="2192" height="1238"/>
+                                        <rect key="frame" x="299" y="206" width="70" height="275"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
@@ -52,7 +69,7 @@
                                 <color key="backgroundColor" red="0.90248542746113991" green="0.90248542746113991" blue="0.90248542746113991" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
                             </scrollView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7K-d2-czI" customClass="TapBox" customModule="NotesThing" customModuleProvider="target">
-                                <rect key="frame" x="243" y="50" width="880" height="924"/>
+                                <rect key="frame" x="689" y="80" width="219" height="533"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -84,12 +101,15 @@
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="canvas" destination="zQ3-Qe-hyh" id="hK3-cl-u9h"/>
                         <outlet property="canvasScroll" destination="PMD-XG-8Qj" id="EsB-gE-nZf"/>
+                        <outlet property="circler" destination="IKi-hc-79e" id="Uhw-tJ-gmx"/>
+                        <outlet property="circlerRecognizer" destination="5Lz-jE-OPi" id="NVI-QP-8EB"/>
+                        <outlet property="outerCircler" destination="FR9-ew-khJ" id="wKb-uw-qW0"/>
                         <outlet property="scrollBox" destination="Vnt-b7-Yxc" id="VlX-im-rg8"/>
                         <outlet property="scrollTapBox" destination="e7K-d2-czI" id="hEA-9d-dhS"/>
                         <outlet property="urlField" destination="IBl-4G-gYL" id="GvH-T1-gek"/>
@@ -103,6 +123,7 @@
                         <action selector="urlPan:" destination="BYZ-38-t0r" id="V6C-Vw-pfF"/>
                     </connections>
                 </panGestureRecognizer>
+                <gestureRecognizer id="5Lz-jE-OPi" customClass="CirclerRecognizer" customModule="NotesThing" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-57.101024890190331" y="133.59375"/>
         </scene>

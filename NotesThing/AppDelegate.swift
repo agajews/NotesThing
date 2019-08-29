@@ -11,8 +11,13 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
+    let tapWindow = TapWindow(frame: UIScreen.main.bounds)
+    var window: UIWindow? {
+        get {
+            return tapWindow
+        }
+        set { }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

@@ -17,6 +17,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var scrollBox: UIView!
     @IBOutlet weak var webBox: TapBox!
     @IBOutlet weak var scrollTapBox: TapBox!
+    @IBOutlet weak var circler: CirclerView!
+    @IBOutlet var circlerRecognizer: CirclerRecognizer!
+    @IBOutlet weak var outerCircler: UIView!
     var canvasExpanded = false
     let splitPoint = 1050
     let totalWidth = 1366
@@ -24,25 +27,30 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         urlField.delegate = self
         webView.navigationDelegate = self
         
-        webBox.tapTrigger = self.webTapped
-        webBox.frame = webView.frame
-        webBox.backgroundColor = UIColor.black.withAlphaComponent(0)
-
+        outerCircler.frame = CGRect(x: 0, y: 50, width: splitPoint, height: 930)
+        webView.frame = CGRect(x: 0, y: 0, width: splitPoint, height: 930)
+        circler.frame = webView.frame
+        webBox.frame = outerCircler.frame
         canvas.frame = CGRect(x: 0, y: 0, width: 3000, height: 3000)
-        
         expandScrollView()
+
+        webBox.tapTrigger = self.webTapped
+        webBox.backgroundColor = UIColor.black.withAlphaComponent(0)
+        webBox.name = "web"
+        
+        circler.isUserInteractionEnabled = false
+        circler.backgroundColor = UIColor.black.withAlphaComponent(0)
+        circlerRecognizer.allowedTouchTypes = [UITouch.TouchType.pencil.rawValue as NSNumber]
+        circlerRecognizer.circler = circler
 
         canvasScroll.minimumZoomScale = max(canvasScroll.visibleSize.width / canvas.frame.width, canvasScroll.visibleSize.height / canvas.frame.height)
         canvasScroll.contentSize = canvas.bounds.size
         canvasScroll.panGestureRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
         canvasScroll.delegate = self
-        webView.frame = CGRect(x: 0, y: 50, width: splitPoint, height: 930)
-        
-        expandWebView()
 
         scrollBox.layer.shadowColor = UIColor.gray.cgColor
         scrollBox.layer.shadowOpacity = 1
@@ -50,9 +58,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         scrollBox.layer.shadowRadius = 5
         scrollBox.layer.masksToBounds = false
         
+        scrollTapBox.isUserInteractionEnabled = true
         scrollTapBox.tapTrigger = self.scrollTapped
         scrollTapBox.backgroundColor = UIColor.black.withAlphaComponent(0)
-        
+        scrollTapBox.name = "scroll"
+
+        expandWebView()
+
+        print(scrollTapBox.frame)
+        print(webBox.frame)
+
         let myURL = URL(string:"https://www.google.com")
         let myRequest = URLRequest(url: myURL!)
         urlField.text = myURL?.absoluteString
@@ -81,13 +96,17 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
 
     @IBAction func urlPan(_ sender: UIPanGestureRecognizer) {
-        if sender.state == .ended {
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+        /* if sender.state == .ended {
+            let webLink = WebLink(frame: CGRect(x: 0, y: 0, width: 200, height: 20), title: webView.title!, url: webView.url!)
+            webLink.center = sender.location(in: canvas)
+            canvas.addSubview(webLink)
+            
+            /*let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
             label.center = sender.location(in: canvas)
             label.textAlignment = .center
             label.text = webView.title!
-            canvas.addSubview(label)
-        }
+            canvas.addSubview(label)*/
+        } */
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -131,6 +150,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             animateExpandScrollView()
         }
     }
-
+    
 }
 
