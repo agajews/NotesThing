@@ -19,6 +19,7 @@
 		80DED103231728FA00389748 /* CirclerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED102231728FA00389748 /* CirclerView.swift */; };
 		80DED1072317477600389748 /* TapWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED1062317477600389748 /* TapWindow.swift */; };
 		80DED1092318084F00389748 /* CirclerRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED1082318084F00389748 /* CirclerRecognizer.swift */; };
+		80DED10D2319741E00389748 /* FixedPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DED10C2319741E00389748 /* FixedPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		80DED102231728FA00389748 /* CirclerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclerView.swift; sourceTree = "<group>"; };
 		80DED1062317477600389748 /* TapWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapWindow.swift; sourceTree = "<group>"; };
 		80DED1082318084F00389748 /* CirclerRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclerRecognizer.swift; sourceTree = "<group>"; };
+		80DED10C2319741E00389748 /* FixedPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedPath.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		8036AB8523133A3B00ACF25F /* NotesThing */ = {
 			isa = PBXGroup;
 			children = (
+				80DED10C2319741E00389748 /* FixedPath.swift */,
 				80DED1082318084F00389748 /* CirclerRecognizer.swift */,
 				80DED0FE2316015A00389748 /* TapBox.swift */,
 				8036AB8623133A3B00ACF25F /* AppDelegate.swift */,
@@ -170,6 +173,7 @@
 				80DED10123171E8100389748 /* WebLink.swift in Sources */,
 				8036AB8723133A3B00ACF25F /* AppDelegate.swift in Sources */,
 				80DED1092318084F00389748 /* CirclerRecognizer.swift in Sources */,
+				80DED10D2319741E00389748 /* FixedPath.swift in Sources */,
 				80DED0F92314635A00389748 /* CanvasView.swift in Sources */,
 				80DED103231728FA00389748 /* CirclerView.swift in Sources */,
 				80DED1072317477600389748 /* TapWindow.swift in Sources */,

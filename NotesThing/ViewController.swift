@@ -44,6 +44,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         circler.isUserInteractionEnabled = false
         circler.backgroundColor = UIColor.black.withAlphaComponent(0)
+        circler.webView = webView
         circlerRecognizer.allowedTouchTypes = [UITouch.TouchType.pencil.rawValue as NSNumber]
         circlerRecognizer.circler = circler
 

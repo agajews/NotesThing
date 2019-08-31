@@ -14,7 +14,6 @@ class TapBox: UIView {
     var name: String? = nil
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        print(point, name!)
         let view = super.hitTest(point, with: event)
         if tapTrigger != nil && view == self {
             tapTrigger!()
