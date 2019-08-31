@@ -77,6 +77,7 @@ class CirclerView: UIView {
     }
     
     func snapshotCompletion(_ image: UIImage?, _ error: Error?) {
+        let controller = (window!.rootViewController as! ViewController)
         let box = path.boundingBox
         if box.width < 10 || box.height < 10 {
             return
@@ -87,9 +88,14 @@ class CirclerView: UIView {
 
         let fixedPath = FixedPath()
         
-        let recognizer = UIPanGestureRecognizer(target: fixedPath, action: #selector(FixedPath.handlePan(gestureRecognizer:)))
-        recognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
-        fixedPath.addGestureRecognizer(recognizer)
+        let panRecognizer = UIPanGestureRecognizer(target: fixedPath, action: #selector(FixedPath.handlePan(gestureRecognizer:)))
+        let tapRecognizer = UITapGestureRecognizer(target: fixedPath, action: #selector(FixedPath.handleTap(gestureRecognizer:)))
+        // panRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
+        tapRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
+        fixedPath.addGestureRecognizer(panRecognizer)
+        fixedPath.addGestureRecognizer(tapRecognizer)
+        fixedPath.url = controller.webView.url
+        fixedPath.webOffset = controller.webView.scrollView.contentOffset
 
         fixedPath.frame = convert(bigBox, to: superview!.superview)
         fixedPath.image = UIImage(cgImage: croppedImage)

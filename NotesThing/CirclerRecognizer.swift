@@ -10,7 +10,7 @@ import UIKit
 import UIKit.UIGestureRecognizerSubclass
 
 class CirclerRecognizer: UIGestureRecognizer {
-    var circler: CirclerView? = nil
+    var circler: UIView? = nil
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         self.state = .began

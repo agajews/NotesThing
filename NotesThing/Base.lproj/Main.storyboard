@@ -79,12 +79,12 @@
                                 <items>
                                     <navigationItem id="Lmp-Z6-b9r">
                                         <nil key="title"/>
-                                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="IBl-4G-gYL">
+                                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search..." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="12" id="IBl-4G-gYL">
                                             <rect key="frame" x="333" y="10" width="700" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <gestureRecognizers/>
                                             <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <outletCollection property="gestureRecognizers" destination="aUw-jL-Tzv" appends="YES" id="t3T-1b-ebC"/>
@@ -97,7 +97,16 @@
                                 <rect key="frame" x="0.0" y="980" width="1366" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="xWk-H0-v5i"/>
+                                    <barButtonItem title="Back" id="xWk-H0-v5i">
+                                        <connections>
+                                            <action selector="webBack:" destination="BYZ-38-t0r" id="eqW-V4-hPl"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Forward" id="uMp-PJ-xRO">
+                                        <connections>
+                                            <action selector="webForward:" destination="BYZ-38-t0r" id="qNS-cW-uEy"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -109,9 +118,11 @@
                         <outlet property="canvasScroll" destination="PMD-XG-8Qj" id="EsB-gE-nZf"/>
                         <outlet property="circler" destination="IKi-hc-79e" id="Uhw-tJ-gmx"/>
                         <outlet property="circlerRecognizer" destination="5Lz-jE-OPi" id="NVI-QP-8EB"/>
+                        <outlet property="navbar" destination="AbC-Tl-3BS" id="GgP-Ae-I45"/>
                         <outlet property="outerCircler" destination="FR9-ew-khJ" id="wKb-uw-qW0"/>
                         <outlet property="scrollBox" destination="Vnt-b7-Yxc" id="VlX-im-rg8"/>
                         <outlet property="scrollTapBox" destination="e7K-d2-czI" id="hEA-9d-dhS"/>
+                        <outlet property="toolbar" destination="uBM-PQ-HBn" id="h6U-SW-ziV"/>
                         <outlet property="urlField" destination="IBl-4G-gYL" id="GvH-T1-gek"/>
                         <outlet property="webBox" destination="zNO-A3-uUc" id="KRf-ew-k6X"/>
                         <outlet property="webView" destination="HQi-v9-uFB" id="v9P-7L-4iu"/>

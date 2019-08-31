@@ -17,6 +17,8 @@ class FixedPath: UIView {
     var imageMask: CGImage? = nil
     let shadowPixels: CGFloat = 5
     var initCenter: CGPoint? = nil
+    var url: URL? = nil
+    var webOffset: CGPoint? = nil
     var onCanvas = false
     var moving = false
 
@@ -24,7 +26,7 @@ class FixedPath: UIView {
         let context = UIGraphicsGetCurrentContext()!
         // context.saveGState()
         if moving {
-            context.setShadow(offset: CGSize(width: 0, height: 0), blur: 15.0, color: UIColor.gray.cgColor)
+            context.setShadow(offset: CGSize(width: 0, height: 3), blur: 15.0, color: UIColor.gray.cgColor)
         }
         // let shadowX = 1 - shadowPixels / frame.width
         // let shadowY = 1 - shadowPixels / frame.height
@@ -91,7 +93,14 @@ class FixedPath: UIView {
             controller.canvas.addSubview(self)
             center = newCenter
             onCanvas = true
+            gestureRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
         }
     }
     
+    @objc func handleTap(gestureRecognizer: UIPanGestureRecognizer) {
+        let controller = (window!.rootViewController as! ViewController)
+        controller.loadUrl(url, offset: webOffset!)
+        controller.animateExpandWebView()
+    }
+
 }
