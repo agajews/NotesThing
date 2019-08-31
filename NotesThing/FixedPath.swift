@@ -88,9 +88,9 @@ class FixedPath: UIView {
         let testCenter = superview!.convert(center, to: controller.canvasScroll)
         
         if gestureRecognizer.state == .ended && controller.canvasScroll.point(inside: testCenter, with: nil) && !onCanvas {
-            let newCenter = superview!.convert(center, to: controller.canvas)
+            let newCenter = superview!.convert(center, to: controller.outerCanvas)
             removeFromSuperview()
-            controller.canvas.addSubview(self)
+            controller.outerCanvas.insertSubview(self, belowSubview: controller.canvas)
             center = newCenter
             onCanvas = true
             gestureRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]

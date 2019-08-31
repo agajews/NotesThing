@@ -56,14 +56,25 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PMD-XG-8Qj">
-                                <rect key="frame" x="287" y="149" width="319" height="166"/>
+                                <rect key="frame" x="253" y="153" width="319" height="166"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQ3-Qe-hyh" customClass="CanvasView" customModule="NotesThing" customModuleProvider="target">
-                                        <rect key="frame" x="299" y="206" width="70" height="275"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jE1-oq-cS0">
+                                        <rect key="frame" x="39" y="19" width="240" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQ3-Qe-hyh" customClass="CanvasView" customModule="NotesThing" customModuleProvider="target">
+                                                <rect key="frame" x="85" y="-74" width="70" height="275"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="aLM-NC-WBH" appends="YES" id="PkI-XD-ZOm"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90248542746113991" green="0.90248542746113991" blue="0.90248542746113991" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
@@ -114,11 +125,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="OuterCanvas" destination="jE1-oq-cS0" id="IZA-jU-rCI"/>
                         <outlet property="canvas" destination="zQ3-Qe-hyh" id="hK3-cl-u9h"/>
+                        <outlet property="canvasRecognizer" destination="aLM-NC-WBH" id="Kgt-Am-ueN"/>
                         <outlet property="canvasScroll" destination="PMD-XG-8Qj" id="EsB-gE-nZf"/>
                         <outlet property="circler" destination="IKi-hc-79e" id="Uhw-tJ-gmx"/>
                         <outlet property="circlerRecognizer" destination="5Lz-jE-OPi" id="NVI-QP-8EB"/>
                         <outlet property="navbar" destination="AbC-Tl-3BS" id="GgP-Ae-I45"/>
+                        <outlet property="outerCanvas" destination="jE1-oq-cS0" id="AQh-VZ-IdP"/>
                         <outlet property="outerCircler" destination="FR9-ew-khJ" id="wKb-uw-qW0"/>
                         <outlet property="scrollBox" destination="Vnt-b7-Yxc" id="VlX-im-rg8"/>
                         <outlet property="scrollTapBox" destination="e7K-d2-czI" id="hEA-9d-dhS"/>
@@ -135,6 +149,7 @@
                     </connections>
                 </panGestureRecognizer>
                 <gestureRecognizer id="5Lz-jE-OPi" customClass="CirclerRecognizer" customModule="NotesThing" customModuleProvider="target"/>
+                <gestureRecognizer id="aLM-NC-WBH" customClass="CirclerRecognizer" customModule="NotesThing" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-57.101024890190331" y="133.59375"/>
         </scene>

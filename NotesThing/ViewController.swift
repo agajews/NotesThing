@@ -22,6 +22,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var outerCircler: UIView!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navbar: UINavigationBar!
+    @IBOutlet weak var outerCanvas: UIView!
+    @IBOutlet var canvasRecognizer: CirclerRecognizer!
     var canvasExpanded = false
     var urlTapRecognizer: UITapGestureRecognizer? = nil
     var nextWebOffset: CGPoint? = nil
@@ -50,8 +52,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         urlField.layer.borderColor = barColor.cgColor
         urlField.layer.borderWidth = 1
         urlField.borderStyle = .roundedRect
-        // urlField.placeholder = "Search..."
-        
+
         urlTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.urlTapped(gestureRecognizer:)))
         urlField.addGestureRecognizer(urlTapRecognizer!)
 
@@ -60,6 +61,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         circler.frame = webView.frame
         webBox.frame = outerCircler.frame
         canvas.frame = CGRect(x: 0, y: 0, width: 3000, height: 3000)
+        outerCanvas.frame = canvas.frame
         expandScrollView()
 
         webBox.tapTrigger = self.webTapped
@@ -71,9 +73,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         circler.webView = webView
         circlerRecognizer.allowedTouchTypes = [UITouch.TouchType.pencil.rawValue as NSNumber]
         circlerRecognizer.circler = circler
+        
+        canvasRecognizer.circler = canvas
+        canvasRecognizer.allowedTouchTypes = [UITouch.TouchType.pencil.rawValue as NSNumber]
+        canvas.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        canvas.isUserInteractionEnabled = false
 
         canvasScroll.minimumZoomScale = max(canvasScroll.visibleSize.width / canvas.frame.width, canvasScroll.visibleSize.height / canvas.frame.height)
-        canvasScroll.contentSize = canvas.bounds.size
+        canvasScroll.contentSize = outerCanvas.bounds.size
         canvasScroll.panGestureRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
         canvasScroll.delegate = self
 
@@ -158,7 +165,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return canvas
+        return outerCanvas
     }
     
     func expandWebView() {
