@@ -118,6 +118,28 @@
                                             <action selector="webForward:" destination="BYZ-38-t0r" id="qNS-cW-uEy"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="POX-A5-S6z"/>
+                                    <barButtonItem style="plain" id="aiY-3G-TjT">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vsS-ZD-ifX">
+                                            <rect key="frame" x="1262" y="7" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Pen"/>
+                                            <connections>
+                                                <action selector="penTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m09-in-C2N"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="Gsl-C0-cQU"/>
+                                    <barButtonItem style="plain" id="n2I-Jk-UYF">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Lnd-kA-xXU">
+                                            <rect key="frame" x="1302" y="7" width="44" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Eraser"/>
+                                            <connections>
+                                                <action selector="eraserTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ph-tx-xAn"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -131,9 +153,11 @@
                         <outlet property="canvasScroll" destination="PMD-XG-8Qj" id="EsB-gE-nZf"/>
                         <outlet property="circler" destination="IKi-hc-79e" id="Uhw-tJ-gmx"/>
                         <outlet property="circlerRecognizer" destination="5Lz-jE-OPi" id="NVI-QP-8EB"/>
+                        <outlet property="eraserButton" destination="Lnd-kA-xXU" id="4QI-mz-ISJ"/>
                         <outlet property="navbar" destination="AbC-Tl-3BS" id="GgP-Ae-I45"/>
                         <outlet property="outerCanvas" destination="jE1-oq-cS0" id="AQh-VZ-IdP"/>
                         <outlet property="outerCircler" destination="FR9-ew-khJ" id="wKb-uw-qW0"/>
+                        <outlet property="penButton" destination="vsS-ZD-ifX" id="1f6-7h-YKy"/>
                         <outlet property="scrollBox" destination="Vnt-b7-Yxc" id="VlX-im-rg8"/>
                         <outlet property="scrollTapBox" destination="e7K-d2-czI" id="hEA-9d-dhS"/>
                         <outlet property="toolbar" destination="uBM-PQ-HBn" id="h6U-SW-ziV"/>

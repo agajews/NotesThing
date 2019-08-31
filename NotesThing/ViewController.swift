@@ -24,13 +24,23 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var navbar: UINavigationBar!
     @IBOutlet weak var outerCanvas: UIView!
     @IBOutlet var canvasRecognizer: CirclerRecognizer!
+    @IBOutlet weak var penButton: UIButton!
+    @IBOutlet weak var eraserButton: UIButton!
     var canvasExpanded = false
     var urlTapRecognizer: UITapGestureRecognizer? = nil
     var nextWebOffset: CGPoint? = nil
+    var trashBox: UIImageView? = nil
     let navbarHeight = 50
     let splitPoint = 1150
     let totalWidth = 1366
     let expandDuration = 0.15
+    let trashDuration = 0.15
+    let trashBoxWidth = 50
+    let trashBoxHeight = 70
+    var trashBoxFrame: CGRect? = nil
+    var trashBoxOffscreenFrame: CGRect? = nil
+    var blackTrash: UIImage? = nil
+    var redTrash: UIImage? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +114,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         let myURL = URL(string:"https://www.google.com")
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
+        
+        penButton.isSelected = true
+        
+        trashBoxFrame = CGRect(x: totalWidth - trashBoxWidth - 10, y: 980 - trashBoxHeight - 10, width: trashBoxWidth, height: trashBoxHeight)
+        trashBoxOffscreenFrame = CGRect(x: totalWidth + 10, y: 980 - trashBoxHeight - 10, width: trashBoxWidth, height: trashBoxHeight)
+        
+        blackTrash = UIImage(named: "trash")
+        redTrash = UIImage(named: "trash-red")
+        trashBox = UIImageView(image: blackTrash)
+        trashBox!.frame = trashBoxOffscreenFrame!
+        trashBox!.contentMode = .scaleAspectFit
+        view.addSubview(trashBox!)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -218,6 +240,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         urlField.becomeFirstResponder()
         urlField.selectAll(nil)
         gestureRecognizer.isEnabled = false
+    }
+    
+    @IBAction func penTapped(_ sender: UIButton) {
+        eraserButton.isSelected = false
+        penButton.isSelected = true
+        canvas.setPen()
+    }
+    
+    @IBAction func eraserTapped(_ sender: Any) {
+        penButton.isSelected = false
+        eraserButton.isSelected = true
+        canvas.setEraser()
     }
 }
 

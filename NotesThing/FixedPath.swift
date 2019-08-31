@@ -17,10 +17,12 @@ class FixedPath: UIView {
     var imageMask: CGImage? = nil
     let shadowPixels: CGFloat = 5
     var initCenter: CGPoint? = nil
+    var initPress: CGPoint? = nil
     var url: URL? = nil
     var webOffset: CGPoint? = nil
     var onCanvas = false
     var moving = false
+    var onTrash = false
 
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()!
@@ -66,35 +68,93 @@ class FixedPath: UIView {
         setNeedsDisplay()
     }
     
-    @objc func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
+    func clip(_ num: CGFloat, lo: CGFloat, hi: CGFloat) -> CGFloat {
+        if num < lo {
+            return lo
+        }
+        if num > hi {
+            return hi
+        }
+        return num
+    }
+    
+    @objc func handlePress(gestureRecognizer: UILongPressGestureRecognizer) {
         let controller = (window!.rootViewController as! ViewController)
         
         if gestureRecognizer.state == .began {
             initCenter = center
+            initPress = gestureRecognizer.location(in: superview!)
             controller.animateExpandScrollView()
+
+            if onCanvas {
+                controller.trashBox!.image = controller.blackTrash
+                UIView.animate(withDuration: controller.trashDuration, animations: {
+                    controller.trashBox!.frame = controller.trashBoxFrame!
+                })
+            }
             
             moving = true
             setNeedsDisplay()
             return
         }
         
+        let location = gestureRecognizer.location(in: superview!)
+        if onCanvas {
+            center = CGPoint(x: clip(initCenter!.x + location.x - initPress!.x, lo: 0, hi: controller.canvas.frame.width), y: clip(initCenter!.y + location.y - initPress!.y, lo: 0, hi: controller.canvas.frame.height))
+        } else {
+            center = CGPoint(x: initCenter!.x + location.x - initPress!.x, y: initCenter!.y + location.y - initPress!.y)
+        }
+
         if gestureRecognizer.state == .ended {
             moving = false
+            onTrash = false
+            // controller.trashBox!.removeFromSuperview()
+            UIView.animate(withDuration: controller.trashDuration, animations: {
+                controller.trashBox!.frame = controller.trashBoxOffscreenFrame!
+            })
             setNeedsDisplay()
         }
         
-        let translation = gestureRecognizer.translation(in: self)
-        center = CGPoint(x: initCenter!.x + translation.x, y: initCenter!.y + translation.y)
-        let testCenter = superview!.convert(center, to: controller.canvasScroll)
+        let viewLocation = gestureRecognizer.location(in: controller.view!)
+        let testCenter = superview!.convert(location, to: controller.canvasScroll)
         
-        if gestureRecognizer.state == .ended && controller.canvasScroll.point(inside: testCenter, with: nil) && !onCanvas {
-            let newCenter = superview!.convert(center, to: controller.outerCanvas)
-            removeFromSuperview()
-            controller.outerCanvas.insertSubview(self, belowSubview: controller.canvas)
-            center = newCenter
-            onCanvas = true
-            gestureRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
+        if onCanvas {
+            if controller.trashBoxFrame!.contains(viewLocation) {
+                if !onTrash {
+                    UIView.transition(with: controller.trashBox!,
+                                      duration: 0.15,
+                                      options: .transitionCrossDissolve,
+                                      animations: {
+                                        controller.trashBox!.image = controller.redTrash!
+                    }, completion: nil)
+                    onTrash = true
+                }
+                if gestureRecognizer.state == .ended {
+                    self.removeFromSuperview()
+                    return
+                }
+            } else {
+                if onTrash {
+                    UIView.transition(with: controller.trashBox!,
+                                      duration: 0.15,
+                                      options: .transitionCrossDissolve,
+                                      animations: {
+                                        controller.trashBox!.image = controller.blackTrash!
+                    }, completion: nil)
+                    onTrash = false
+                }
+            }
+        } else {
+            if gestureRecognizer.state == .ended && controller.canvasScroll.point(inside: testCenter, with: nil) {
+                let newCenter = superview!.convert(center, to: controller.outerCanvas)
+                removeFromSuperview()
+                controller.outerCanvas.insertSubview(self, belowSubview: controller.canvas)
+                center = newCenter
+                onCanvas = true
+                gestureRecognizer.minimumPressDuration = 0.1
+            }
         }
+
     }
     
     @objc func handleTap(gestureRecognizer: UIPanGestureRecognizer) {

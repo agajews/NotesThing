@@ -57,19 +57,6 @@ class CirclerView: UIView {
         self.setNeedsDisplay()
     }
     
-    func lastRect(prev: CGPoint, curr: CGPoint) -> CGRect {
-        let prevX = prev.x
-        let prevY = prev.y
-        let currX = curr.x
-        let currY = curr.y
-        let minX = min(prevX, currX) - 5
-        let maxX = max(prevX, currX) + 5
-        let minY = min(prevY, currY) - 5
-        let maxY = max(prevY, currY) + 5
-        let rect = CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
-        return rect
-    }
-    
     func updateStroke(touch: UITouch) {
         let location = touch.location(in: self)
         path.addLine(to: location)
@@ -88,11 +75,13 @@ class CirclerView: UIView {
 
         let fixedPath = FixedPath()
         
-        let panRecognizer = UIPanGestureRecognizer(target: fixedPath, action: #selector(FixedPath.handlePan(gestureRecognizer:)))
+        let pressRecognizer = UILongPressGestureRecognizer(target: fixedPath, action: #selector(FixedPath.handlePress(gestureRecognizer:)))
+        pressRecognizer.minimumPressDuration = 0.0
+        pressRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
         let tapRecognizer = UITapGestureRecognizer(target: fixedPath, action: #selector(FixedPath.handleTap(gestureRecognizer:)))
         // panRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
         tapRecognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
-        fixedPath.addGestureRecognizer(panRecognizer)
+        fixedPath.addGestureRecognizer(pressRecognizer)
         fixedPath.addGestureRecognizer(tapRecognizer)
         fixedPath.url = controller.webView.url
         fixedPath.webOffset = controller.webView.scrollView.contentOffset
