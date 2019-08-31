@@ -12,6 +12,7 @@ import WebKit
 class CirclerView: UIView {
 
     var path = CGMutablePath()
+    var currFixedPath: FixedPath? = nil
     var displayPath: CGPath? = nil
     var webView: WKWebView? = nil
     var ended = false
@@ -20,6 +21,9 @@ class CirclerView: UIView {
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()!
         context.addPath(path)
+        context.setLineWidth(5)
+        context.setLineCap(.round)
+        context.setStrokeColor(UIColor.black.cgColor)
         if !ended {
             context.strokePath()
         } else {
@@ -47,6 +51,9 @@ class CirclerView: UIView {
         ended = false
         path = CGMutablePath()
         path.move(to: touch.location(in: self))
+        if currFixedPath != nil && !currFixedPath!.onCanvas {
+            currFixedPath!.removeFromSuperview()
+        }
         self.setNeedsDisplay()
     }
     
@@ -77,28 +84,23 @@ class CirclerView: UIView {
         let bigBox = CGRect(x: box.minX - bigDelta, y: box.minY - bigDelta, width: box.width + 2 * bigDelta, height: box.height + 2 * bigDelta)
         let scaledBox = CGRect(x: 2 * box.minX, y: 2 * box.minY, width: 2 * box.width, height: 2 * box.height)
         let croppedImage = image!.cgImage!.cropping(to: scaledBox)!
-        let uiImage = UIImage(cgImage: croppedImage)
-        // let imageView = UIImageView(image: UIImage(cgImage: croppedImage))
- 
-        // let hoverView = UIView()
-        // hoverView.frame = convert(bigBox, to: superview!.superview)
-
-        // imageView.frame = convert(box, to: hoverView)
-        // imageView.contentMode = .scaleAspectFit
-        // imageView.isOpaque = false
-        // hoverView.addSubview(imageView)
 
         let fixedPath = FixedPath()
+        
+        let recognizer = UIPanGestureRecognizer(target: fixedPath, action: #selector(FixedPath.handlePan(gestureRecognizer:)))
+        recognizer.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
+        fixedPath.addGestureRecognizer(recognizer)
+
         fixedPath.frame = convert(bigBox, to: superview!.superview)
-        fixedPath.image = uiImage
+        fixedPath.image = UIImage(cgImage: croppedImage)
         fixedPath.interior = convert(box, to: fixedPath)
         var transform = CGAffineTransform(translationX: -bigBox.minX, y: -bigBox.minY)
         fixedPath.setPath(path: path.copy(using: &transform), displayPath: displayPath!.copy(using: &transform))
-        // hoverView.addSubview(fixedPath)
-
+        
         superview!.superview!.addSubview(fixedPath)
+        currFixedPath = fixedPath
     }
-
+    
     func endStroke(touch: UITouch) {
         let location = touch.location(in: self)
         path.addLine(to: location)
